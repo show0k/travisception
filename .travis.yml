@@ -18,7 +18,7 @@ script:
     - touch $TRAVIS_COMMIT
     - git add -A
     - git commit -m "Loop of commits will never end ... $TRAVIS_BUILD_NUMBER"
-    - git push origin master --force
+    - git push origin master --force --quiet
     - popd
       
 notifications:

@@ -1,4 +1,5 @@
 language: c
+sudo: false
 env:
   global:
     - GIT_EMAIL=poppy-bot-ci@inria.fr
@@ -9,6 +10,9 @@ env:
 script:
     - git config --global user.email $GIT_EMAIL
     - git config --global user.name $GIT_NAME
+    - git_url=https://$GH_TOKEN@github.com/$GH_USERNAME/$GH_REPO.git
+    # Configure Git to push with GitHub Oauth token
+    - git remote set-url origin $git_url
     - pushd travis_files
     - touch $TRAVIS_COMMIT
     - git add "$TRAVIS_COMMIT"

@@ -12,7 +12,6 @@ script:
     - git config --global user.name $GIT_NAME
     - set +x
     - git_url=https://$GH_TOKEN@github.com/$TRAVIS_REPO_SLUG.git
-    # Configure Git to push with GitHub Oauth token
     - mkdir tmp
     - git clone $git_url tmp 
     - pushd tmp/travis_files

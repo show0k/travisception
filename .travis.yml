@@ -1,0 +1,20 @@
+language: c
+env:
+  global:
+    - GIT_EMAIL=poppy-bot-ci@inria.fr
+    - GIT_NAME=poppy-bot
+    # GH_TOKEN encrypted below > travis encrypt GH_TOKEN=XXXXXX --add
+    - secure: cY9fKNY3AmaTCWLtgT8lDcD+PIBuZPmzizjD1jCaaEtHG4MsDd47Z2UNOhg/TNknFkpb++oM7wu2OPJ+g578dBZEQhVlmMrmKGwd7DUDVXXaZO+zoOXnF54sGQmbTnVNJybo84lIysWvTJh+LwlvVHhk5039Uu7uLaBc9nEbJqZB9FKTQxuAJoD3Fm0lg/hAOuxKnBMgTb6ntlVk7IwOBboN48EHApLm/O1cKmQdFQPqTUZ7M9j7TFgphc+EBAUG91/G+B6rmJOMh54z0GZ89QfLFWkxkE0ITihBwlQ+gviR72ug9h9uY1uoGcUZ2GDQdC1bXwgqDyKyDYGxTehNjQhIFPz5knxSg9R/o0gAps9B3lSpUx1bAJMfBhahSNuHI6o/44idyfMe/VF+Cyoj8aY4cVuQbhdRUevzlnCeb0oO3P3XoE3/9BBmEP2HL4aUGT2o49d9rqLgTiCV9acByNHRbokkNNYQdPx3X1xmNTOouG3ivUJ+lLLbOsh4MIZTIIIio7MBc/sCOeqTee2YPtrsHbuCx9w460KhKotwpsx+Jo5er2NU00MibDzQPfXdkhREQDvBwoKSMH5dzQSSjzdJdnDWg4m7vN52aRt9Bxo1N5h/f84cRl4hpNK9AAjL47Sa5kZbdRREUr+Pyq7xA7OhGrr+9Ean+cdGfdb79EE=
+ 
+script:
+    - git config --global user.email $GIT_EMAIL
+    - git config --global user.name $GIT_NAME
+    - pushd travis_files
+    - touch $TRAVIS_COMMIT
+    - git add "$TRAVIS_COMMIT"
+    - git commit -m "Loop of commits will never end"
+    - git push origin master
+      
+notifications:
+  on_failure: never
+  on_success: never

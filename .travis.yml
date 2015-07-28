@@ -11,14 +11,16 @@ script:
     - git config --global user.email $GIT_EMAIL
     - git config --global user.name $GIT_NAME
     - set +x
-    - git_url=https://$GH_TOKEN@github.com/$GH_USERNAME/$GH_REPO.git
+    - git_url=https://$GH_TOKEN@github.com/$TRAVIS_REPO_SLUG.git
     # Configure Git to push with GitHub Oauth token
-    - git remote set-url origin $git_url
-    - pushd travis_files
+    - mkdir tmp
+    - git clone $git_url tmp 
+    - pushd tmp/travis_files
     - touch $TRAVIS_COMMIT
-    - git add "$TRAVIS_COMMIT"
+    - git add -A
     - git commit -m "Loop of commits will never end"
     - git push origin master
+    - popd
       
 notifications:
   on_failure: never

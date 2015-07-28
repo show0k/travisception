@@ -2,26 +2,23 @@ language: c
 sudo: false
 env:
   global:
-    - GIT_EMAIL=poppy-bot-ci@inria.fr
-    - GIT_NAME=poppy-bot
-    # GH_TOKEN encrypted below > travis encrypt GH_TOKEN=XXXXXX --add
-    - secure: cY9fKNY3AmaTCWLtgT8lDcD+PIBuZPmzizjD1jCaaEtHG4MsDd47Z2UNOhg/TNknFkpb++oM7wu2OPJ+g578dBZEQhVlmMrmKGwd7DUDVXXaZO+zoOXnF54sGQmbTnVNJybo84lIysWvTJh+LwlvVHhk5039Uu7uLaBc9nEbJqZB9FKTQxuAJoD3Fm0lg/hAOuxKnBMgTb6ntlVk7IwOBboN48EHApLm/O1cKmQdFQPqTUZ7M9j7TFgphc+EBAUG91/G+B6rmJOMh54z0GZ89QfLFWkxkE0ITihBwlQ+gviR72ug9h9uY1uoGcUZ2GDQdC1bXwgqDyKyDYGxTehNjQhIFPz5knxSg9R/o0gAps9B3lSpUx1bAJMfBhahSNuHI6o/44idyfMe/VF+Cyoj8aY4cVuQbhdRUevzlnCeb0oO3P3XoE3/9BBmEP2HL4aUGT2o49d9rqLgTiCV9acByNHRbokkNNYQdPx3X1xmNTOouG3ivUJ+lLLbOsh4MIZTIIIio7MBc/sCOeqTee2YPtrsHbuCx9w460KhKotwpsx+Jo5er2NU00MibDzQPfXdkhREQDvBwoKSMH5dzQSSjzdJdnDWg4m7vN52aRt9Bxo1N5h/f84cRl4hpNK9AAjL47Sa5kZbdRREUr+Pyq7xA7OhGrr+9Ean+cdGfdb79EE=
- 
+  - GIT_EMAIL=poppy-bot-ci@inria.fr
+  - GIT_NAME=poppy-bot
+  - secure: S2UYRXYZqi7ARBNaPdS8U64sg+c0QR0N6wEZB3ZdKC89MPmjmJTnfLOADm+NX3nswuabueVtxCTLHlGxghg8e4dhVPJiyM3LtliGnW5hYoPGSudzkljli6/gCtutApQzNdspgeWha63O/4nAnUiTGNUwQXVAJw85ZSzKOJ6CaI5K/XqgIN+4RzTO7CKJzK3kj9o+e2cEGcnUfOriF/BjMhN1aujLZ83Sqyb/DQY+17hInaugQvO6AeNvw5Zt4ewykeN9LOTAs9xZwC1sxsrDEZgV87EpFBNH/4pFtPLIwXuiEDAwwmGTjMcUn86y7dgUa/kQUtDNkdoL/gjVivsVTYmmOJlN3l5kmem/URxmRwtPnt2ci4iDNJQokaj0Rb1PMqdAX/6uxjFpneqoALmiDcekPDiWxfcVTke/Cazp08zY3nTGYy7sbIP9+BqnLNIgm4AtGPNfT7RwLkyKUbinVIgy8X7yA0Mgq4S3ru8XiaN7rZ44G4BLuOLCYaRphGr7a/B2kXbFGmnoJCQ0n5svR4Gfe8TQ+0Q2ygaVMxjHUMN/SaSs/nYkx6+DLUnfIqqV5LSpNMdce++wI4dVYtNqrKcXgklvfIAU/tbqgdfNmLiLPK0RXMvtlX1zWEbJny0fZOfPxkn67nIAohTTgT+mZgNyn27sQt672qJleuSsid4=
 script:
-    - git config --global user.email $GIT_EMAIL
-    - git config --global user.name $GIT_NAME
-    - set +x
-    - git_url=https://$GH_TOKEN@github.com/$TRAVIS_REPO_SLUG.git
-    - mkdir tmp
-    - git clone $git_url tmp 
-    - pushd tmp/travis_files
-    - touch $TRAVIS_COMMIT
-    - git add -A
-    - git commit -m "Loop of commits will never end ... $TRAVIS_BUILD_NUMBER"
-    - git push origin master --force --quiet
-    - popd
-      
+- git config --global user.email $GIT_EMAIL
+- git config --global user.name $GIT_NAME
+- set +x
+- git_url=https://$GH_TOKEN@github.com/$TRAVIS_REPO_SLUG.git
+- mkdir tmp
+- git clone $git_url tmp
+- pushd tmp/travis_files
+- touch $TRAVIS_COMMIT
+- git add -A
+- git commit -m "Loop of commits will never end ... $TRAVIS_BUILD_NUMBER"
+- git push origin master --force --quiet
+- popd
 notifications:
   email:
     recipients:
-      - theo.segonds@inria.fr
+    - theo.segonds@inria.fr
